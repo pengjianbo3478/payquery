@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gl365.payquery.mapper.PayReturnMapper">
+	<resultMap id="BaseResultMap" type="com.gl365.payquery.model.PayReturn">
+		<id column="pay_id" property="payId" jdbcType="VARCHAR" />
+		<result column="request_id" property="requestId" jdbcType="VARCHAR" />
+		<result column="request_date" property="requestDate" jdbcType="DATE" />
+		<result column="orig_pay_id" property="origPayId" jdbcType="VARCHAR" />
+		<result column="orig_pay_date" property="origPayDate" jdbcType="DATE" />
+		<result column="organ_code" property="organCode" jdbcType="VARCHAR" />
+		<result column="organ_merchant_no" property="organMerchantNo" jdbcType="VARCHAR" />
+		<result column="merchant_no" property="merchantNo" jdbcType="VARCHAR" />
+		<result column="merchant_name" property="merchantName" jdbcType="VARCHAR" />
+		<result column="terminal" property="terminal" jdbcType="VARCHAR" />
+		<result column="operator" property="operator" jdbcType="VARCHAR" />
+		<result column="settle_organ_no" property="settleOrganNo" jdbcType="VARCHAR" />
+		<result column="merchant_agent_no" property="merchantAgentNo" jdbcType="VARCHAR" />
+		<result column="user_agent_type" property="userAgentType" jdbcType="CHAR" />
+		<result column="parent_agent_no" property="parentAgentNo" jdbcType="VARCHAR" />
+		<result column="invite_agent_no" property="inviteAgentNo" jdbcType="VARCHAR" />
+		<result column="user_dev_manager" property="userDevManager" jdbcType="VARCHAR" />
+		<result column="user_dev_staff" property="userDevStaff" jdbcType="VARCHAR" />
+		<result column="province" property="province" jdbcType="SMALLINT" />
+		<result column="city" property="city" jdbcType="SMALLINT" />
+		<result column="district" property="district" jdbcType="SMALLINT" />
+		<result column="trans_type" property="transType" jdbcType="VARCHAR" />
+		<result column="user_id" property="userId" jdbcType="VARCHAR" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="user_mobile" property="userMobile" jdbcType="VARCHAR" />
+		<result column="card_index" property="cardIndex" jdbcType="VARCHAR" />
+		<result column="card_no" property="cardNo" jdbcType="VARCHAR" />
+		<result column="total_amount" property="totalAmount" />
+		<result column="no_benefit_amount" property="noBenefitAmount" />
+		<result column="cash_amount" property="cashAmount" />
+		<result column="bean_amount" property="beanAmount" />
+		<result column="coin_amount" property="coinAmount" />
+		<result column="pay_fee_type" property="payFeeType" />
+		<result column="pay_fee_rate" property="payFeeRate" />
+		<result column="max_pay_fee" property="maxPayFee" />
+		<result column="pay_fee" property="payFee" />
+		<result column="comm_type" property="commType" jdbcType="VARCHAR" />
+		<result column="comm_rate" property="commRate" />
+		<result column="gift_rate" property="giftRate" />
+		<result column="comm_amount" property="commAmount" />
+		<result column="marcket_fee" property="marcketFee" />
+		<result column="gift_amount" property="giftAmount" />
+		<result column="gift_point" property="giftPoint" />
+		<result column="merchant_settle_amount" property="merchantSettleAmount" />
+		<result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+		<result column="pay_status" property="payStatus" jdbcType="VARCHAR" />
+		<result column="pay_desc" property="payDesc" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="create_by" property="createBy" jdbcType="VARCHAR" />
+		<result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+		<result column="modify_by" property="modifyBy" jdbcType="VARCHAR" />
+		<result column="merchant_order_no" property="merchantOrderNo" jdbcType="VARCHAR" />
+		<result column="orig_merchant_order_no" property="origMerchantOrderNo" jdbcType="VARCHAR" />
+		<result column="organ_order_no" property="organOrderNo" jdbcType="VARCHAR" />
+		<result column="orig_organ_order_no" property="origOrganOrderNo" jdbcType="VARCHAR" />
+		<result column="transaction_id" property="transactionId" jdbcType="VARCHAR" />
+		<result column="organ_pay_time" property="organPayTime" jdbcType="TIMESTAMP" />
+		<result column="join_type" property="joinType" jdbcType="VARCHAR" />
+		<result column="scene" property="scene" />
+		<result column="order_type" property="orderType" />
+		<result column="merchant_order_title" property="merchantOrderTitle" />
+		<result column="merchent_order_desc" property="merchentOrderDesc" />
+		<result column="reward_user_id" property="rewardUserId" />
+		<result column="reward_pay_id" property="rewardPayId" />
+		<result column="group_order_id" property="groupOrderId" />
+		<result column="split_flag" property="splitFlag" />
+		<result column="group_mainuser_pay" property="groupMainuserPay" />
+		<result column="group_pt_pay" property="groupPtPay" />
+		<result column="group_mainuser_pay_bean" property="groupMainuserPayBean" />
+		<result column="group_gift_amount" property="groupGiftAmount" />
+		<result column="group_merchant_no" property="groupMerchantNo" />
+		<result column="dec_amount" property="decAmount" />
+	</resultMap>
+
+	<resultMap id="queryPagePayReturnTotalTotalResultMap" type="com.gl365.payquery.dto.mgr.response.QueryPagePayReturnTotalRespDTO">
+		<result column="totalAmountTotal" property="totalAmountTotal" />
+		<result column="cashAmountTotal" property="cashAmountTotal" />
+		<result column="beanAmountTotal" property="beanAmountTotal" />
+		<result column="payFeeTotal " property="payFeeTotal" />
+		<result column="merchantSettleAmountTotal" property="merchantSettleAmountTotal" />
+	</resultMap>
+
+	<select id="queryPagePayReturn" parameterType="com.gl365.payquery.model.PayReturn" resultMap="BaseResultMap">
+		select * from pay_return where 1=1 <include refid="queryPagePayReturnCondition"></include> order by create_time desc
+	</select>
+	
+	<sql id="queryPagePayReturnCondition">
+		<if test="userMobile != null">
+			and user_mobile like CONCAT('%',#{userMobile},'%')
+		</if>
+		<if test="userName != null">
+			and user_name like CONCAT('%',#{userName},'%')
+		</if>
+		<if test="merchantName != null">
+			and merchant_name like CONCAT('%',#{merchantName},'%')
+		</if>
+		<if test="payStatus != null">
+			and pay_status = #{payStatus}
+		</if>
+		<if test="requestDate != null">
+			and request_date = #{requestDate}
+		</if>
+		<if test="organCode != null">
+			and organ_code = #{organCode}
+		</if>
+		<if test="merchantNo != null">
+			and merchant_no = #{merchantNo}
+		</if>
+		<if test="origPayId != null">
+			and orig_pay_id = #{origPayId}
+		</if>
+		<if test="payId != null">
+			and pay_id = #{payId}
+		</if>
+		
+	</sql>
+
+	<select id="queryByPayId" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select * from pay_return where pay_id=#{payId}
+	</select>
+
+	<select id="queryPagePayReturnTotal" parameterType="com.gl365.payquery.model.PayReturn" resultMap="queryPagePayReturnTotalTotalResultMap">
+		select 
+		sum(total_amount) as totalAmountTotal,
+		sum(cash_amount) as cashAmountTotal,
+		sum(bean_amount) as beanAmountTotal,
+		sum(pay_fee) as payFeeTotal,
+		sum(merchant_settle_amount) as merchantSettleAmountTotal
+		from pay_main where 1=1 <include refid="queryPagePayReturnCondition"></include>
+	</select>
+</mapper>

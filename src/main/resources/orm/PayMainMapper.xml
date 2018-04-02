@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gl365.payquery.mapper.PayMainMapper">
+	<resultMap id="BaseResultMap" type="com.gl365.payquery.model.PayMain">
+		<id column="pay_id" property="payId" />
+		<result column="request_id" property="requestId" />
+		<result column="request_date" property="requestDate" />
+		<result column="pre_pay_id" property="prePayId" />
+		<result column="organ_code" property="organCode" />
+		<result column="organ_merchant_no" property="organMerchantNo" />
+		<result column="merchant_no" property="merchantNo" />
+		<result column="merchant_name" property="merchantName" />
+		<result column="terminal" property="terminal" />
+		<result column="operator" property="operator" />
+		<result column="settle_organ_no" property="settleOrganNo" />
+		<result column="merchant_agent_no" property="merchantAgentNo" />
+		<result column="user_agent_type" property="userAgentType" />
+		<result column="parent_agent_no" property="parentAgentNo" />
+		<result column="invite_agent_no" property="inviteAgentNo" />
+		<result column="user_agent_no" property="userAgentNo" />
+		<result column="user_dev_manager" property="userDevManager" />
+		<result column="user_dev_staff" property="userDevStaff" />
+		<result column="province" property="province" jdbcType="SMALLINT" />
+		<result column="city" property="city" jdbcType="SMALLINT" />
+		<result column="district" property="district" jdbcType="SMALLINT" />
+		<result column="trans_type" property="transType" />
+		<result column="scene" property="scene" />
+		<result column="order_type" property="orderType" />
+		<result column="merchant_order_title" property="merchantOrderTitle" />
+		<result column="merchent_order_desc" property="merchentOrderDesc" />
+		<result column="merchant_order_no" property="merchantOrderNo" />
+		<result column="organ_order_no" property="organOrderNo" />
+		<result column="reward_user_id" property="rewardUserId" />
+		<result column="reward_pay_id" property="rewardPayId" />
+		<result column="user_id" property="userId" />
+		<result column="user_name" property="userName" />
+		<result column="card_index" property="cardIndex" />
+		<result column="total_amount" property="totalAmount" />
+		<result column="no_benefit_amount" property="noBenefitAmount" />
+		<result column="pay_fee" property="payFee" />
+		<result column="cash_amount" property="cashAmount" />
+		<result column="bean_amount" property="beanAmount" />
+		<result column="coin_amount" property="coinAmount" />
+		<result column="pay_fee_rate" property="payFeeRate" />
+		<result column="pay_fee_type" property="payFeeType" />
+		<result column="comm_rate" property="commRate" />
+		<result column="max_pay_fee" property="maxPayFee" />
+		<result column="comm_amount" property="commAmount" />
+		<result column="marcket_fee" property="marcketFee" />
+		<result column="gift_rate" property="giftRate" />
+		<result column="gift_amount" property="giftAmount" />
+		<result column="gift_point" property="giftPoint" />
+		<result column="merchant_settle_amount" property="merchantSettleAmount" />
+		<result column="pay_time" property="payTime" />
+		<result column="pay_status" property="payStatus" />
+		<result column="pay_desc" property="payDesc" />
+		<result column="is_notify" property="isNotify" />
+		<result column="create_time" property="createTime" />
+		<result column="create_by" property="createBy" />
+		<result column="modify_time" property="modifyTime" />
+		<result column="modify_by" property="modifyBy" />
+		<result column="settle_organ_no" property="settleOrganNo" />
+		<result column="parent_agent_no" property="parentAgentNo" />
+		<result column="invite_agent_no" property="inviteAgentNo" />
+		<result column="user_mobile" property="userMobile" />
+		<result column="card_no" property="cardNo" />
+		<result column="group_order_id" property="groupOrderId" />
+		<result column="split_flag" property="splitFlag" />
+		<result column="group_mainuser_pay" property="groupMainuserPay" />
+		<result column="group_pt_pay" property="groupPtPay" />
+		<result column="group_mainuser_pay_bean" property="groupMainuserPayBean" />
+		<result column="group_gift_amount" property="groupGiftAmount" />
+		<result column="group_merchant_no" property="groupMerchantNo" />
+		<result column="transaction_id" property="transactionId" />
+		<result column="organ_pay_time" property="organPayTime" />
+		<result column="dec_amount" property="decAmount" />
+		<result column="join_type" property="joinType" />
+	</resultMap>
+
+	<resultMap id="queryPagePayMainTotalResultMap"
+		type="com.gl365.payquery.dto.mgr.response.QueryPagePayMainTotalRespDTO">
+		<result column="totalAmountTotal" property="totalAmountTotal" />
+		<result column="cashAmountTotal" property="cashAmountTotal" />
+		<result column="beanAmountTotal" property="beanAmountTotal" />
+		<result column="giftAmountTotal " property="giftAmountTotal" />
+		<result column="merchantSettleAmountTotal" property="merchantSettleAmountTotal" />
+		<result column="noBenefitAmountTotal" property="noBenefitAmountTotal" />
+		<result column="commAmountTotal" property="commAmountTotal" />
+		<result column="posPayAmountTotal" property="posPayAmountTotal" />
+		<result column="onlinePayAmountTotal" property="onlinePayAmountTotal" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		pay_id, request_id, request_date, pre_pay_id, organ_code,
+		organ_merchant_no, merchant_no, merchant_name,
+		terminal, operator,
+		settle_organ_no, merchant_agent_no, user_agent_type, parent_agent_no,
+		invite_agent_no, user_agent_no, user_dev_manager,user_dev_staff,
+		province, city, district, trans_type, scene, order_type,
+		merchant_order_title, merchent_order_desc,
+		merchant_order_no,organ_order_no,reward_user_id, reward_pay_id,
+		user_id, user_name,user_mobile, card_index, card_no, total_amount,
+		no_benefit_amount,
+		pay_fee, cash_amount, bean_amount, coin_amount,
+		pay_fee_rate,pay_fee_type, comm_rate,max_pay_fee,
+		comm_amount,
+		marcket_fee, gift_rate, gift_amount, gift_point,
+		merchant_settle_amount,
+		pay_time, pay_status,
+		pay_desc,is_notify,create_time, create_by, modify_time, modify_by,
+		group_order_id, split_flag,
+		group_mainuser_pay, group_pt_pay,
+		group_mainuser_pay_bean, group_gift_amount, group_merchant_no,
+		transaction_id,organ_pay_time,dec_amount, join_type
+	</sql>
+
+	<select id="queryByPayId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select * from pay_main where pay_id=#{0}
+	</select>
+
+	<select id="queryPagePayMain" parameterType="com.gl365.payquery.model.PayMain"
+		resultMap="BaseResultMap">
+		select * from pay_main where 1=1
+		<include refid="queryPagePayMainCondition"></include>
+	</select>
+
+	<sql id="queryPagePayMainCondition">
+		<if test="scene != null">
+			and scene =#{scene}
+		</if>
+		<if test="userMobile != null">
+			and user_mobile like CONCAT('%',#{userMobile},'%')
+		</if>
+		<if test="merchantName != null">
+			and merchant_name like CONCAT('%',#{merchantName},'%')
+		</if>
+		<if test="orderType != null">
+			and order_type = #{orderType}
+		</if>
+		<if test="transType != null">
+			and trans_type = #{transType}
+		</if>
+		<if test="payStatus != null">
+			and pay_status = #{payStatus}
+		</if>
+		<if test="startDate != null">
+			and create_time &gt;= #{startDate}
+		</if>
+		<if test="endDate != null">
+			and create_time &lt;= #{endDate}
+		</if>
+		<if test="payStartDate != null">
+			<![CDATA[and pay_time >= #{payStartDate}]]>
+		</if>
+		<if test="payEndDate != null">
+			<![CDATA[and pay_time <= #{payEndDate}]]>
+		</if>
+		<if test="splitFlag != null and splitFlag !='' ">
+			and split_flag = #{splitFlag}
+		</if>
+		<if test="organCode != null">
+			and organ_code = #{organCode}
+		</if>
+		<if test="groupOrderId != null">
+			and group_order_Id = #{groupOrderId}
+		</if>
+		<if test="payId != null">
+			and pay_Id = #{payId}
+		</if>
+		<if test="organOrderNo != null">
+			and organ_order_no = #{organOrderNo}
+		</if>
+		<if test="totalAmount != null">
+			and total_amount = #{totalAmount}
+		</if>
+		<if test="totalAmountStart != null">
+  			<![CDATA[and total_amount >=#{totalAmountStart}]]>
+		</if>
+		<if test="totalAmountEnd != null">
+  			<![CDATA[and total_amount <= #{totalAmountEnd}]]>
+		</if>
+		<if test="inviteAgentNo != null">
+			and invite_agent_no = #{inviteAgentNo}
+		</if>
+		<if test="userDevStaff != null">
+			and user_dev_staff = #{userDevStaff}
+		</if>
+		<if test="userDevManager != null">
+			and user_dev_manager = #{userDevManager}
+		</if>
+		<if test="parentAgentNo != null">
+			and parent_agent_no = #{parentAgentNo}
+		</if>
+		<if test="userAgentNo != null">
+			and user_agent_no = #{userAgentNo}
+		</if>
+		<if test="merchantNo != null">
+			and merchant_no = #{merchantNo}
+		</if>
+		<if test="merchantOrderNo != null">
+			and merchant_order_no like CONCAT('%',#{merchantOrderNo},'%')
+		</if>
+		<if test="sceneCategory != null">
+			<choose>
+				<when test="sceneCategory == 'KJ'">
+					and scene in ('00','01','02','03')
+				</when>
+				<when test="sceneCategory == 'WX'">
+					and scene in ('04','05','06')
+				</when>
+				<when test="sceneCategory == 'ZFB'">
+					and scene in ('07','08','09')
+				</when>
+			</choose>
+		</if>
+
+		order by create_time desc
+	</sql>
+
+	<select id="queryByUserIdAndGroupOrderId" parameterType="com.gl365.payquery.model.PayMain"
+		resultMap="BaseResultMap">
+		select * from pay_main where user_id=#{userId} and
+		group_order_id=#{groupOrderId} and pay_status=#{payStatus}
+	</select>
+
+	<select id="queryByPayIdList" resultMap="BaseResultMap">
+		select * from pay_main where pay_id in
+		<foreach collection="list" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<select id="queryPagePayMainTotal" parameterType="com.gl365.payquery.model.PayMain"
+		resultMap="queryPagePayMainTotalResultMap">
+		select
+		sum(total_amount) as totalAmountTotal,
+		sum(cash_amount) as cashAmountTotal,
+		sum(bean_amount) as beanAmountTotal,
+		sum(gift_amount) as
+		giftAmountTotal,
+		sum(merchant_settle_amount) as
+		merchantSettleAmountTotal,
+		sum(no_benefit_amount) as
+		noBenefitAmountTotal,
+		sum(comm_amount) as commAmountTotal
+		from pay_main
+		where 1=1 and pay_status='01'
+		<include refid="queryPagePayMainCondition"></include>
+	</select>
+
+	<resultMap id="queryPagePayTotalByOperatorResultMap"
+		type="com.gl365.payquery.dto.mgr.response.QueryPayTotalByOperatorRespDTO">
+		<result column="operator" property="operator" />
+		<result column="totalAmountTotal" property="totalAmountTotal" />
+		<result column="giftAmountTotal" property="giftAmountTotal" />
+		<result column="commAmountTotal" property="commAmountTotal" />
+		<result column="merchantSettleAmountTotal " property="merchantSettleAmountTotal" />
+		<result column="txnCount" property="txnCount" />
+	</resultMap>
+
+	<select id="queryPagePayTotalByOperator"
+		parameterType="com.gl365.payquery.dto.mgr.request.QueryPagePayTotalByOperatorReqDTO"
+		resultMap="queryPagePayTotalByOperatorResultMap">
+		select
+		'6' as operateType,
+		operator as operator,
+		sum(merchant_settle_amount) as merchantSettleAmountTotal,
+		sum(gift_amount) as giftAmountTotal,
+		sum(comm_amount) as commAmountTotal,
+		sum(total_amount) as totalAmountTotal,
+		count(1) as txnCount
+		from
+		pay_main
+		where
+		pay_status = '01'
+		and length(operator) in(16,32)
+		<if test="merchantNo != null">
+			and merchant_no = #{merchantNo}
+		</if>
+		<if test="payStartDate != null">
+				<![CDATA[and pay_time >= #{payStartDate}]]>
+		</if>
+		<if test="payEndDate != null">
+				<![CDATA[and pay_time <= #{payEndDate}]]>
+		</if>
+		group by
+		operator
+
+		union all
+
+		select
+		'5' as operateType,
+		merchant_no as operator,
+		sum(merchant_settle_amount) as merchantSettleAmountTotal,
+		sum(gift_amount) as giftAmountTotal,
+		sum(comm_amount) as commAmountTotal,
+		sum(total_amount) as totalAmountTotal,
+		count(1) as txnCount
+		from
+		pay_main
+		where
+		pay_status = '01'
+		and length(operator) is NULL
+		<if test="payStartDate != null">
+				<![CDATA[and pay_time >= #{payStartDate}]]>
+		</if>
+		<if test="payEndDate != null">
+				<![CDATA[and pay_time <= #{payEndDate}]]>
+		</if>
+		<if test="merchantNo != null">
+			and merchant_no = #{merchantNo}
+		</if>
+		group by merchant_no
+	</select>
+
+
+	<resultMap id="queryPagePayTotalByOperatorTotalResultMap"
+		type="com.gl365.payquery.dto.mgr.response.QueryPayTotalByOperatorTotalRespDTO">
+		<result column="merchantSettleAmountTotal" property="merchantSettleAmountTotal" />
+		<result column="giftAmountTotal" property="giftAmountTotal" />
+		<result column="commAmountTotal" property="commAmountTotal" />
+		<result column="totalAmountTotal" property="totalAmountTotal" />
+		<result column="posPayAmountTotal" property="posPayAmountTotal" />
+		<result column="onlinePayAmountTotal" property="onlinePayAmountTotal" />
+	</resultMap>
+
+	<select id="queryPagePayTotalByOperatorTotal"
+		parameterType="com.gl365.payquery.dto.mgr.request.QueryPagePayTotalByOperatorReqDTO"
+		resultMap="queryPagePayTotalByOperatorTotalResultMap">
+		select
+		sum(a.merchantSettleAmountTotal) as merchantSettleAmountTotal,
+		sum(a.giftAmountTotal) as giftAmountTotal,
+		sum(a.commAmountTotal) as commAmountTotal,
+		sum(a.totalAmountTotal) as totalAmountTotal
+		from
+		(select
+		'6' as operateType,
+		operator as operator,
+		scene as scene,
+		sum(merchant_settle_amount) as merchantSettleAmountTotal,
+		sum(gift_amount) as giftAmountTotal,
+		sum(comm_amount) as commAmountTotal,
+		sum(total_amount) as totalAmountTotal,
+		count(1) as txnCount
+		from
+		pay_main
+		where
+		pay_status = '01'
+		and length(operator) in(16,32)
+		<if test="payStartDate != null">
+				<![CDATA[and pay_time >= #{payStartDate}]]>
+		</if>
+		<if test="payEndDate != null">
+				<![CDATA[and pay_time <= #{payEndDate}]]>
+		</if>
+		<if test="merchantNo != null">
+			and merchant_no = #{merchantNo}
+		</if>
+		group by
+		operator
+
+		union all
+
+		select
+		'5' as operateType,
+		merchant_no as operator,
+		scene as scene,
+		sum(merchant_settle_amount) as merchantSettleAmountTotal,
+		sum(gift_amount) as giftAmountTotal,
+		sum(comm_amount) as commAmountTotal,
+		sum(total_amount) as totalAmountTotal,
+		count(1) as txnCount
+		from
+		pay_main
+		where
+		pay_status = '01'
+		and length(operator) is NULL
+		<if test="payStartDate != null">
+				<![CDATA[and pay_time >= #{payStartDate}]]>
+		</if>
+		<if test="payEndDate != null">
+				<![CDATA[and pay_time <= #{payEndDate}]]>
+		</if>
+		<if test="merchantNo != null">
+			and merchant_no = #{merchantNo}
+		</if>
+		group by merchant_no
+		) a
+	</select>
+
+	<select id="queryPagePayTotalByOperatorDetail"
+		parameterType="com.gl365.payquery.dto.mgr.request.QueryPagePayTotalByOperatorDetailReqDTO"
+		resultMap="BaseResultMap">
+		select
+		merchant_order_no,operator,pay_time,organ_merchant_no,merchant_settle_amount,gift_amount,total_amount,comm_amount,scene,pay_status
+		from pay_main where pay_status in ('01','03','04')
+		<choose>
+			<when test="operator!= null">
+				and operator = #{operator}
+			</when>
+			<otherwise>
+				and operator is NULL
+			</otherwise>
+		</choose>
+		<if test="payStartDate != null">
+			<![CDATA[and pay_time >= #{payStartDate}]]>
+		</if>
+		<if test="payEndDate != null">
+			<![CDATA[and pay_time <= #{payEndDate}]]>
+		</if>
+		<if test="merchantNo != null">
+			and merchant_no = #{merchantNo}
+		</if>
+		order by pay_time desc
+	</select>
+
+	<resultMap id="queryPagePayTotalByOperatorDetailTotalResultMap"
+		type="com.gl365.payquery.dto.mgr.response.QueryPagePayTotalByOperatorDetailTotalRespDTO">
+		<result column="merchantSettleAmountTotal" property="merchantSettleAmountTotal" />
+	</resultMap>
+
+	<select id="queryPagePayTotalByOperatorDetailTotal"
+		parameterType="com.gl365.payquery.dto.mgr.request.QueryPagePayTotalByOperatorDetailReqDTO"
+		resultMap="queryPagePayTotalByOperatorDetailTotalResultMap">
+		select
+		sum(merchant_settle_amount) as merchantSettleAmountTotal
+		from
+		pay_main
+		where pay_status = '01'
+		<choose>
+			<when test="operator!= null">
+				and operator = #{operator}
+			</when>
+			<otherwise>
+				and operator is NULL
+			</otherwise>
+		</choose>
+		<if test="payStartDate != null">
+			<![CDATA[and pay_time >= #{payStartDate}]]>
+		</if>
+		<if test="payEndDate != null">
+			<![CDATA[and pay_time <= #{payEndDate}]]>
+		</if>
+		<if test="merchantNo != null">
+			and merchant_no = #{merchantNo}
+		</if>
+	</select>
+
+</mapper>
